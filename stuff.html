@@ -1,0 +1,494 @@
+<!DOCTYPE HTML>
+<html>
+    
+    <head>
+        
+        <title>Stuff</title>
+        <script type="text/javascript" src="http://cdn.dev.skype.com/uri/skype-uri.js"></script>
+        
+        <style>
+            
+            @import url(http://fonts.googleapis.com/css?family=PT+Serif);
+            
+            body
+            {
+                font-family: 'PT Serif', serif;
+            }
+            
+            
+            body *
+            {
+                padding: 0;
+                margin: 0;
+            }
+            
+            header
+            {
+                margin: 10% 0 15%;
+            }
+            
+            #container
+            {
+                width: 690px;
+                margin: 0 auto;
+            }
+            
+            section:after
+            {
+                content: '';
+                display: table;
+                clear: both;
+                margin: 0;
+                padding: 0;
+                line-height: 0;
+            }
+            
+            section > article
+            {
+                width: 300px;
+                min-height: 300px;
+                float: left;
+                border-radius: 50%;
+                margin-bottom: 4em;
+            }
+            
+            section > article img
+            {
+                width: 100%;
+                height: auto !important;
+            }
+            
+            section > article:nth-child(2n)
+            {
+                margin-left: 10%
+            }
+            
+            section > article *:not(.lines)
+            {
+                border-radius: 50%;
+                
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            
+            /*      first article      */
+            .flip-wrapper
+            {
+                position: relative;
+                perspective: 800px;
+                -webkit-perspective: 800px;
+                -moz-perspective: 800px;
+                -ms-perspective: 800px;
+            }
+            
+            .flip-wrapper:hover .flip
+            {
+                transform: rotate3d(0,1,0,180deg);
+                -webkit-transform: rotate3d(0,1,0,180deg);
+                -moz-transform: rotate3d(0,1,0,180deg);
+                -ms-transform: rotate3d(0,1,0,180deg);
+            }
+            
+            .flip-wrapper,
+            .flip-wrapper *
+            {
+                width: 100%;
+                height: 100%;
+            }
+            
+            .flip
+            {
+                position: absolute;
+                transform-style: preserve-3d;
+                -webkit-transform-style: preserve-3d;
+                -moz-transform-style: preserve-3d;
+                -ms-transform-style: preserve-3d;
+                
+                
+                transition: 0.8s ease;
+                -webkit-transition: .8s ease;
+                -moz-transition: 0.8s ease;
+                -ms-transition: 0.8s ease;
+                -o-transition: 0.8s ease;
+            }
+            
+            .flip > div
+            {
+                position: absolute;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                -moz-backface-visibility: hidden;
+                -ms-backface-visibility: hidden;
+            }
+            
+            .flip-back
+            {
+                background: black;
+                transform: rotate3d(0,1,0,180deg);
+                -webkit-transform: rotate3d(0,1,0,180deg);
+                -moz-transform: rotate3d(0,1,0,180deg);
+                -ms-transform: rotate3d(0,1,0,180deg);
+            }
+            
+            
+            /*      second article      */
+            .slide
+            {
+                position: relative;
+                width: 300px;
+                height: 300px;
+            }
+            
+            .slide > div
+            {
+                position: absolute;
+            }
+            
+            .slide-front
+            {
+                z-index: 999;
+                
+                transition: 0.8s ease;
+                -webkit-transition: .8s ease;
+                -moz-transition: 0.8s ease;
+                -ms-transition: 0.8s ease;
+                -o-transition: 0.8s ease;
+            }
+            
+            .slide:hover .slide-front
+            {
+                transform: translateY(75%);
+                -webkit-transform: translateY(75%);
+                -moz-transform: translateY(75%);
+                -ms-transform: translateY(75%);
+                -o-transform: translateY(75%);
+            }
+            
+            .slide-back
+            {
+                border: 50px solid #fff;
+                
+                transition: 0.3s ease;
+                -webkit-transition: .3s ease;
+                -moz-transition: 0.3s ease;
+                -ms-transition: 0.3s ease;
+                -o-transition: 0.3s ease;
+            }
+            
+            .slide:hover .slide-back 
+            {
+                border-width:  0;
+                
+                transform: rotate(360deg);
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+            }
+            
+            /*      third article      */
+            .skype-wrap
+            {
+                position: relative;
+            }
+            
+            .skype-wrap *:not(i)
+            {
+                position: absolute;
+                min-width: 300px;
+                min-height: 300px;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .skype-wrap > div
+            {
+                transition: 0.3s ease;
+                -webkit-transition: .3s ease;
+                -moz-transition: 0.3s ease;
+                -ms-transition: 0.3s ease;
+                -o-transition: 0.3s ease;
+            }
+            
+            .skype-logo a
+            {
+                border-radius: 50%;
+                display: inline-block;
+                
+                
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+                
+                background: url(images/skype.png) no-repeat center center;
+                
+                transform: scale(.5);
+                -webkit-transform: scale(.5);
+                -moz-transform: scale(.5);
+                -ms-transform: scale(.5);
+                -o-transform: scale(.5);
+            }
+            
+            .skype-logo a i
+            {
+                position: absolute;
+                bottom: -30px;
+                left: 100px;
+                
+                font-style: normal;
+                font-size: 32px;
+                
+                opacity: 0;
+                
+                transition: opacity 0.3s 1s ease;
+                -webkit-transition: opacity 0.3s 1s ease;
+                -moz-transition: opacity 0.3s 1s ease;
+                -ms-transition: opacity 0.3s 1s ease;
+                -o-transition: opacity 0.3s 1s ease;
+            }
+            
+            .skype-border
+            {
+                border: 1px solid #aaa;
+            }
+            
+            .skype-back
+            {
+                background-color: #272c34;
+                
+                transform: scale(0);
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                -ms-transform: scale(0);
+                -o-transform: scale(0);
+            }
+            
+            .skype-wrap:hover .skype-border,
+            .skype-wrap:hover .skype-back
+            {
+                transform: scale(.9);
+                -webkit-transform: scale(.9);
+                -moz-transform: scale(.9);
+                -ms-transform: scale(.9);
+                -o-transform: scale(.9);
+            }
+            
+            .skype-wrap:hover .skype-border
+            {
+                border: 10px solid #00adef;
+            }
+            
+            .skype-wrap:hover .skype-logo a i
+            {
+                opacity: 1;
+            }
+            
+            
+            /*      fourth article      */
+            .scale-wrap
+            {
+                position: relative;
+                overflow: hidden;
+                
+                width: 300px;
+                height: 300px;
+            }
+            
+            .scale-wrap > *
+            {
+                position: absolute;
+            }
+            
+            .scale
+            {
+                text-align: center;
+                color: #333;
+                background-color: rgba(200, 200, 130, .8);
+                
+                width: 100%;
+                min-height: 300px;
+                
+                transform: scale(0);
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                -ms-transform: scale(0);
+                -o-transform: scale(0);
+            }
+            
+            .scale-wrap:hover .scale
+            {
+                transform: scale(1);
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                -ms-transform: scale(1);
+                -o-transform: scale(1);
+            }
+            
+            .scale,
+            .scale *
+            {
+                transition: 0.3s ease;
+                -webkit-transition: .3s ease;
+                -moz-transition: 0.3s ease;
+                -ms-transition: 0.3s ease;
+                -o-transition: 0.3s ease;
+            }
+            
+            .scale-wrap:hover .scale *
+            {
+                margin-top: 0;
+                opacity: 1;
+            }
+            
+            .scale h3
+            {
+                opacity: 0;
+                line-height: 36px;
+                margin-top: -200px;
+                margin-bottom: 15px;
+                border-bottom: 1px dotted #fff;
+            }
+            
+            .scale span
+            {
+                opacity: 0;
+                display: block;
+                margin-top: -400px;
+                
+                transition: 1s ease;
+                -webkit-transition: 1s ease;
+                -moz-transition: 0.3s ease;
+                -ms-transition: 0.3s ease;
+                -o-transition: 0.3s ease;
+            }
+            
+            
+            @media screen and (max-width: 640px){
+                
+                #container { width: 100% }
+                
+                section > article
+                {
+                    margin: 0 0 2em !important;
+                }
+            }
+            
+            
+            
+        </style>
+        
+    </head>
+    
+    <body>
+        
+        <div id="container">
+            
+            <header>
+                
+                <h1>My Sample Work, Hope That You Like It..</h1>
+                
+            </header>
+            
+            <section>
+                
+                <article>
+                    
+                    <div class="flip-wrapper">
+                        
+                        <div class="flip">
+                            
+                            <div class="flip-front">
+                                
+                                <img src="images/8.jpg"/>
+                                
+                            </div><!-- flip-front -->
+                            
+                            <div class="flip-back">
+                                
+                                <img src="images/4.jpg"/>
+                                
+                            </div><!-- flip-back -->
+                            
+                        </div><!-- .flip -->
+                        
+                    </div><!-- .flip-wrapper -->
+                    
+                </article>
+                
+                
+                
+                <article>
+                    
+                    <div class="slide">
+                        
+                        <div class="slide-back">
+                            
+                            <img src="images/7.jpg"/>
+                            
+                        </div><!-- slide-back -->
+                        
+                        <div class="slide-front">
+                            
+                            <div><img src="images/9.jpg"/></div>
+                            
+                        </div><!-- slide-front -->
+                        
+                    </div><!-- .slide -->
+                    
+                </article>
+                
+                
+                
+                <article>
+                    <div class="skype-wrap">
+                        
+                        <div class="skype-back"></div>
+                        
+                        <div class="skype-border"></div>
+                        
+                        <div class="skype-logo">
+                            
+                            <a href="skype:armen.azatyan2020?chat"><i>add me!</i></a>
+                            
+                        </div><!-- .skype-logo -->
+                        
+                    </div><!-- .skype-wrap -->
+                </article>
+                
+                <article>
+                    
+                    <div class="scale-wrap">
+                        
+                        <img src="images/2.jpg"/>
+                        
+                        <div class="scale">
+                            
+                            <h3 class='lines'>~ I know ~</h3>
+                            <span class='lines'>PHP Programing</span>
+                            <span class='lines'>OOP, MVC</span>
+                            <span class='lines'>MySQL</span>
+                            <span class='lines'>Ajax, JSON</span>
+                            <span class='lines'>jQuery</span>
+                            <span class='lines'>Responsive Design</span>
+                            <span class='lines'>WordPress</span>
+                            <span class='lines'>APIs...</span>
+                            
+                        </div>
+                        
+                    </div><!-- .scale -->
+                    
+                </article>
+                
+            </section>
+            
+            <footer>
+                
+                <p>Author: <a href="https://www.odesk.com/users/~01b4462f286b0ffedf">Armen Azatyan.</a></p>
+                
+            </footer>
+            
+        </div><!-- #container -->
+        
+    </body>
+    
+</html>
